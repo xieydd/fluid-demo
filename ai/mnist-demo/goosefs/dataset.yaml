@@ -1,0 +1,24 @@
+apiVersion: data.fluid.io/v1alpha1
+kind: Dataset
+metadata:
+  name: mnist 
+spec:
+  mounts:
+  - mountPoint: cosn://rdmatest-1251707795/ 
+    name: mnist
+    options:
+      fs.cosn.bucket.region: ap-shanghai
+      fs.cosn.impl: org.apache.hadoop.fs.CosFileSystem
+      fs.AbstractFileSystem.cosn.impl: org.apache.hadoop.fs.CosN
+      fs.cos.app.id: "1251707795"
+    encryptOptions:
+       - name: fs.cosn.userinfo.secretId
+         valueFrom:
+           secretKeyRef:
+             name: mnist-goosefs-secret 
+             key: fs.cosn.userinfo.secretId
+       - name: fs.cosn.userinfo.secretKey
+         valueFrom:
+           secretKeyRef:
+             name: mnist-goosefs-secret
+             key: fs.cosn.userinfo.secretKey

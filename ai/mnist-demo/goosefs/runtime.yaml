@@ -1,0 +1,13 @@
+apiVersion: data.fluid.io/v1alpha1
+kind: GooseFSRuntime
+metadata:
+ name: mnist
+spec:
+ replicas: 2 
+ tieredstore:
+   levels:
+     - mediumtype: MEM 
+       path: /dev/shm
+       quota: 2G
+       high: "0.8"
+       low: "0.7"

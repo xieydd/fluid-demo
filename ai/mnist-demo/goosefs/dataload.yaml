@@ -1,0 +1,11 @@
+apiVersion: data.fluid.io/v1alpha1
+kind: DataLoad
+metadata:
+ name: mnist-dataload
+spec:
+ dataset:
+   name: mnist 
+   namespace: default
+ loadMetadata: true
+ target:
+   - path: /
